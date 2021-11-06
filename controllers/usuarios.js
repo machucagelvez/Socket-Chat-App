@@ -22,6 +22,7 @@ const usuariosGet = async(req = request, res = response) => {
             .limit(Number(limite))
     ])
 
+    
     res.json({
         total,
         usuarios
@@ -73,11 +74,8 @@ const usuariosDelete = async(req, res = response) => {
     // Borrar fisicamente:
     // const usuario = await Usuario.findByIdAndDelete(id)
 
-    const usuario = await Usuario.findByIdAndUpdate(id, {estado: false})
-
-    res.json({
-        usuario
-    })
+    const usuario = await Usuario.findByIdAndUpdate(id, {estado: false}, {new: true})
+    res.json(usuario)
 }
 
 const usuariosPatch = (req, res = response) => {

@@ -39,7 +39,9 @@ const UsuarioSchema = Schema({
 // No se puede usar función de flecha porque se va a usar el objeto this
 UsuarioSchema.methods.toJSON = function () {
     //toObject es un Método de Mongoose que convierte en un objeto de JS
-    const { __v, password, ...usuario } = this.toObject()
+    const { __v, password, _id, ...usuario } = this.toObject()
+    //Se incluye el campo uid en usuario con lo que hay en _id (es para cambiar el nombre del campo al mostrarlo)
+    usuario.uid = _id
     return usuario
 }
 
